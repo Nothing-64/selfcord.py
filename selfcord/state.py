@@ -1003,7 +1003,8 @@ class ConnectionState:
         if channel is not None:
             self.dispatch('webhooks_update', channel)
         else:
-            log.debug('WEBHOOKS_UPDATE referencing an unknown channel ID: %s. Discarding.', data['channel_id'])
+            log.debug('WEBHOOKS_UPDATE referencing an unknown channel ID: %s. Discarding.', data)
+            return
 
     def parse_voice_state_update(self, data):
         guild = self._get_guild(utils._get_as_snowflake(data, 'guild_id'))
